@@ -1,5 +1,6 @@
 const data = require('../TestData.json');
 const getRandomQuestions = require('../helper/randomQuestions');
+const rankCalc = require('../helper/rankCalc');
 
 module.exports.play = async (_req, res) => {
   try {
@@ -8,12 +9,21 @@ module.exports.play = async (_req, res) => {
   } catch (error) {
     res.status(500).json({
       message:
-        'An error occurred while processing your request, Try again later',
+        'An error occurred while processing your request, try again later',
     });
     throw new Error(error);
   }
 };
 
-module.exports.rank = async (_req, res) => {
-  res.status(201).json('Testing POST route');
+module.exports.rank = async (req, res) => {
+  try {
+    const rankRounded = rankCalc(data, req.body.score);
+    res.status(200).json({ rank: rankRounded });
+  } catch (error) {
+    res.status(500).json({
+      message:
+        'An error occurred while processing your request, try again later',
+    });
+    throw new Error(error);
+  }
 };
