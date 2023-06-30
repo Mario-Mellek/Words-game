@@ -4,6 +4,7 @@ import axios from 'axios';
 import { getQuestions } from '../utils/APIroutes';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
+import { Line } from 'rc-progress';
 import '../styles/playGame.css';
 
 export default function PlayGame() {
@@ -13,13 +14,23 @@ export default function PlayGame() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem('user')) {
+    const user = localStorage.getItem('user') || undefined;
+    const prevAttempt = user ? JSON.parse(user).prevAttempt : undefined;
+    if (user && prevAttempt === 0) {
       getQuestionsReq();
     }
     else {
       navigate('/');
     }
   }, []);
+
+  useEffect(() => {
+    if (currentQuestionIndex === 10) {
+      setTimeout(() => {
+        navigate('/leaderboard');
+      }, 3000);
+    }
+  }, [currentQuestionIndex]);
 
   const getQuestionsReq = async () => {
     try {
@@ -39,7 +50,7 @@ export default function PlayGame() {
 
     setTimeout(() => {
       setCorrectAnswer(undefined);
-    }, 1000);
+    }, 500);
   };
 
   return (
@@ -48,10 +59,25 @@ export default function PlayGame() {
         <NavBar />
       </header>
       <section className='main'>
-        {questions && questions[currentQuestionIndex] && (
+        <Line
+          className='progress-bar'
+          percent={currentQuestionIndex / 10 * 100}
+          strokeWidth={1}
+          strokeColor="#000000"
+          trailWidth={0.5}
+        />
+        <span>{currentQuestionIndex} / 10</span>
+        {currentQuestionIndex === 10 &&
+          <div className='endGame-screen'>
+            <br />
+            <span>Well Done!</span>
+            <span>You will be redirected to the leaderboard in few seconds</span>
+          </div>
+        }
+        {questions && questions[currentQuestionIndex] &&
           <div className={`words-card ${correctAnswer === undefined ? '' : (correctAnswer ? 'correct' : 'wrong')}`}>
             <h3>What is the Position of speech of the word:</h3>
-            <p key={questions[currentQuestionIndex].id} className='swipe-in'>{questions[currentQuestionIndex].word}</p>
+            <p key={questions[currentQuestionIndex].id} className='word swipe-in'>{questions[currentQuestionIndex].word}</p>
             <div className='options'>
               <button className='optn-btn bounce' onClick={() => handleOptionClick('noun')}>Noun</button>
               <button className='optn-btn bounce' onClick={() => handleOptionClick('adverb')}>Adverb</button>
@@ -59,7 +85,7 @@ export default function PlayGame() {
               <button className='optn-btn bounce' onClick={() => handleOptionClick('verb')}>Verb</button>
             </div>
           </div>
-        )}
+        }
         <ToastContainer />
       </section>
     </>

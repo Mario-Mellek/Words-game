@@ -9,8 +9,8 @@ export default function LandingPage() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [user, setUser] = useState({
     userName: '',
-    personalBest: '',
-    prevAttempt: ''
+    personalBest: 0,
+    prevAttempt: 0
   });
 
   useEffect(() => {
@@ -68,9 +68,9 @@ export default function LandingPage() {
           :
           <div className='card'>
             <h1>Welcom {user.userName} Click <Link to='/Playgame'>here to play</Link></h1>
-            {!user.personalBest && !user.prevAttempt ? <span>Come back after playing to check your score</span> : null}
-            {user.personalBest && <p>Personal best: {user.personalBest} </p>}
-            {user.prevAttempt && <p>Previous attempt: {user.prevAttempt} </p>}
+            {user.personalBest === 0 && user.prevAttempt === 0 ? <span>Come back after playing to check your score</span> : null}
+            {user.personalBest !== 0 && <p>Personal best: {user.personalBest} </p>}
+            {user.prevAttempt !== 0 && <p>Previous attempt: {user.prevAttempt} </p>}
             <button className='exit-btn' onClick={exitGame}>Exit</button>
           </div>}
         <ToastContainer

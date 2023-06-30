@@ -14,7 +14,7 @@ export default function NavBar() {
         <ul>
           <li><NavLink activeclassname="active" to='/'>Home</NavLink></li>
           <li><NavLink activeclassname="active" to='/Playgame'>Play</NavLink></li>
-          <li><NavLink activeclassname="active" to='/leaderboard'>Leader Board</NavLink></li>
+          <li><NavLink activeclassname="active" to='/leaderboard'>Leaderboard</NavLink></li>
         </ul>
       </div>
     </nav>
