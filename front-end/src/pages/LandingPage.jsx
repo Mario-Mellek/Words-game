@@ -53,7 +53,7 @@ export default function LandingPage() {
               <div className="user-box">
                 <input
                   onChange={handleChange}
-                  placeholder='User-name'
+                  placeholder='Enter your name'
                   type="text"
                   name="userName"
                   id="name" />
@@ -62,9 +62,9 @@ export default function LandingPage() {
             </form>
           </div>
           :
-          <div>
+          <div className='card'>
             <h1>Welcom {user.userName} Click <Link to='/Playgame'>here to play</Link></h1>
-            {!user.personalBest && !user.prevAttempt ? <span>Come back after playing to check your high score</span> : null}
+            {!user.personalBest && !user.prevAttempt ? <span>Come back after playing to check your score</span> : null}
             {user.personalBest && <p>Personal best: {user.personalBest} </p>}
             {user.prevAttempt && <p>Previous attempt: {user.prevAttempt} </p>}
             <button className='exit-btn' onClick={exitGame}>Exit</button>

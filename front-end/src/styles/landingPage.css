@@ -53,7 +53,7 @@ form {
 .login-box input[type='submit'],
 .exit-btn {
   padding: 10px 20px;
-  color: #ffffff;
+  color: black;
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
@@ -67,4 +67,21 @@ form {
   border-radius: 5px;
   box-shadow: 0 0 5px #03f40f, 0 0 25px #03f40f, 0 0 50px #03f40f,
     0 0 100px #03f40f;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 60%;
+  height: 80%;
+  border-radius: 0.5rem;
+  background: rgb(167, 167, 167);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
+}
+.exit-btn:hover {
+  background: #f40303;
+  box-shadow: 0 0 5px #f40303, 0 0 25px #f40303, 0 0 50px #f40303,
+    0 0 100px #f40303;
 }
