@@ -43,13 +43,7 @@ form {
   pointer-events: none;
   transition: 0.5s;
 }
-.login-box .user-box input:focus ~ label,
-.login-box .user-box input:valid ~ label {
-  top: -20px;
-  left: 0;
-  color: #bdb8b8;
-  font-size: 12px;
-}
+
 .login-box input[type='submit'],
 .exit-btn {
   padding: 10px 20px;
@@ -59,6 +53,7 @@ form {
   text-transform: uppercase;
   transition: 0.5s;
   letter-spacing: 4px;
+  border-radius: 5rem;
 }
 .login-box input[type='submit']:hover,
 .exit-btn:hover {
@@ -84,4 +79,26 @@ form {
   background: #f40303;
   box-shadow: 0 0 5px #f40303, 0 0 25px #f40303, 0 0 50px #f40303,
     0 0 100px #f40303;
+}
+
+/** Classes for the displayed toast **/
+.Toastify__toast {
+  color: rgb(255, 255, 255) !important;
+  font-size: large;
+  background-color: rgba(24, 20, 20, 0.987) !important;
+}
+.Toastify__toast-icon {
+  width: 40px !important;
+}
+.Toastify__progress-bar {
+  background-color: rgba(24, 20, 20, 0.987) !important;
+}
+.Toastify__close-button > svg {
+  width: 25px !important;
+  height: 25px !important;
+}
+.Toastify__close-button:hover,
+.Toastify__close-button:focus {
+  background-color: rgb(224, 0, 0);
+  border-radius: 5px;
 }

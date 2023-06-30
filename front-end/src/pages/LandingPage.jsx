@@ -27,12 +27,16 @@ export default function LandingPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (user.userName.length <= 3) {
-      toast.error('user name should be more than 3 charachters');
+    if (user.userName.length === 0) {
+      toast.error('User name can\'t be empty');
       return;
     }
-    setIsRegistered(true);
+    if (user.userName.length <= 3) {
+      toast.error('User name Must be more than 3 characters');
+      return;
+    }
     localStorage.setItem('user', JSON.stringify(user));
+    setIsRegistered(true);
   };
 
   const exitGame = () => {
@@ -69,7 +73,14 @@ export default function LandingPage() {
             {user.prevAttempt && <p>Previous attempt: {user.prevAttempt} </p>}
             <button className='exit-btn' onClick={exitGame}>Exit</button>
           </div>}
-        <ToastContainer />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </section>
     </>
   );
