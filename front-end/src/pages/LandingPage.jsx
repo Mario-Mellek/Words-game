@@ -49,7 +49,7 @@ export default function LandingPage() {
       <header>
         <NavBar />
       </header>
-      <section className='home'>
+      <section className='main'>
         {!isRegistered ?
           <div className="login-box">
             <img src="giphy.gif" alt="Greeting-gif" />
