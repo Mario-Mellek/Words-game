@@ -17,6 +17,7 @@ export default function PlayGame() {
   const [loading, setIsloading] = useState(false);
   const navigate = useNavigate();
 
+  // Check for stored user and get questions when component mounts
   useEffect(() => {
     const user = localStorage.getItem('user') || undefined;
     if (user) {
@@ -27,6 +28,7 @@ export default function PlayGame() {
     }
   }, []);
 
+  // Update percentage and navigate to leaderboard when currentQuestionIndex reaches 10
   useEffect(() => {
     if (currentQuestionIndex === 10) {
       setPercentage((score / questions.length) * 100);
@@ -42,6 +44,7 @@ export default function PlayGame() {
     }
   }, [currentQuestionIndex, percentage]);
 
+  // Get questions from API
   const getQuestionsReq = async () => {
     try {
       setIsloading(true);
@@ -54,6 +57,7 @@ export default function PlayGame() {
     }
   };
 
+  // Handle option click and update score and currentQuestionIndex
   const handleOptionClick = (option) => {
     if (option === questions[currentQuestionIndex].pos) {
       setCurrentQuestionIndex((prev) => ++prev);
@@ -67,7 +71,6 @@ export default function PlayGame() {
       setCorrectAnswer(undefined);
     }, 500);
   };
-
   return (
     <>
       <header>

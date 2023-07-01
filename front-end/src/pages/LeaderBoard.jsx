@@ -21,7 +21,7 @@ export default function LeaderBoard() {
   const [isComplete] = useTimeout(5000);
   const [loading, setIsloading] = useState(false);
 
-
+  // Check for stored user and get score when component mounts
   useEffect(() => {
     const user = localStorage.getItem('user') || undefined;
     const currentRank = user ? JSON.parse(user).rank.current : undefined;
@@ -44,6 +44,7 @@ export default function LeaderBoard() {
     }
   }, [percentage, rank, score]);
 
+  // Post score to API
   const scorePostReq = async (score) => {
     try {
       setIsloading(true);

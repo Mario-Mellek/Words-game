@@ -18,6 +18,7 @@ export default function LandingPage() {
     }
   });
 
+  // Check for stored user in local storage when component mounts
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
@@ -26,10 +27,12 @@ export default function LandingPage() {
     }
   }, []);
 
+  // Update user state when name input changes
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  // Handle form submission to register user
   const handleSubmit = (e) => {
     e.preventDefault();
     if (user.userName.length === 0) {
@@ -44,11 +47,11 @@ export default function LandingPage() {
     setIsRegistered(true);
   };
 
+  // Clear user from local storage and set isRegistered state to false
   const exitGame = () => {
     localStorage.clear('user');
     setIsRegistered(false);
   };
-
   return (
     <>
       <header>
