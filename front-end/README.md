@@ -2,7 +2,7 @@
 
 ## Description
 
-Words Game is an interactive activity that helps students practice categorizing words according to their part of speech. The front-end of the game is a React.js project bundled by Vite.js that includes several screens: a Landing Page, a Practice Screen, a Rank Screen, and a Leader Board screen.
+Words Game is an interactive activity that helps students practice categorizing words according to their part of speech. The front-end of the game is a React.js project bundled by Vite.js that includes several screens: a Landing Page, a Practice Screen, and a Leader Board screen.
 
 ## Installation
 
@@ -19,5 +19,5 @@ To play the game, navigate to the Practice Screen by clicking on the “Play” 
 
 After answering all of the questions, the Rank Screen will be displayed. This screen shows your rank across your peers and includes a “Try Again” button that allows you to repeat the activity.
 
-You can view the Leader Board screen to see how you rank against other players.
-You can view the home screen for personal best and previous attempt score.
+- You can view the Leader Board screen to see how you rank against other players.
+- You can view the home screen for personal best and previous attempt score.
