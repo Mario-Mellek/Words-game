@@ -7,6 +7,7 @@ import axios from 'axios';
 import { postScore } from '../utils/APIroutes';
 import Score from '../components/Score';
 import { toast, ToastContainer } from 'react-toastify';
+import { RingLoader } from 'react-spinners';
 import '../styles/leaderboard.css';
 
 export default function LeaderBoard() {
@@ -18,6 +19,7 @@ export default function LeaderBoard() {
   const [bestRank, setBestRank] = useState(0);
   const [score, setScore] = useState(0);
   const [isComplete] = useTimeout(5000);
+  const [loading, setIsloading] = useState(false);
 
 
   useEffect(() => {
@@ -44,6 +46,7 @@ export default function LeaderBoard() {
 
   const scorePostReq = async (score) => {
     try {
+      setIsloading(true);
       const user = JSON.parse(localStorage.getItem('user'));
       const res = await axios.post(postScore, { 'score': score });
       user.rank.current = res.data.rank;
@@ -53,7 +56,9 @@ export default function LeaderBoard() {
       localStorage.setItem('user', JSON.stringify(user));
       setRank(res.data.rank);
       setBestRank(user.rank.best);
+      setIsloading(false);
     } catch (error) {
+      setIsloading(false);
       toast.error(`${error.message} Try again later`);
     }
   };
@@ -88,6 +93,14 @@ export default function LeaderBoard() {
         recycle={!isComplete()}
       />
       <ToastContainer />
+      <div className={`${loading ? 'loader' : null}`}>
+        <RingLoader
+          color="#000000"
+          loading={loading}
+          size={150}
+          speedMultiplier={1}
+        />
+      </div>
     </>
   );
 }

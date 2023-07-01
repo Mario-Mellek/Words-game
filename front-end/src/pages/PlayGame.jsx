@@ -5,6 +5,7 @@ import { getQuestions } from '../utils/APIroutes';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { Line } from 'rc-progress';
+import { RingLoader } from 'react-spinners';
 import '../styles/playGame.css';
 
 export default function PlayGame() {
@@ -13,6 +14,7 @@ export default function PlayGame() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [percentage, setPercentage] = useState(0);
+  const [loading, setIsloading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,9 +44,12 @@ export default function PlayGame() {
 
   const getQuestionsReq = async () => {
     try {
+      setIsloading(true);
       const res = await axios.get(getQuestions);
       setQuestions(res.data);
+      setIsloading(false);
     } catch (error) {
+      setIsloading(false);
       toast.error(`${error.message} Try again later`);
     }
   };
@@ -98,6 +103,14 @@ export default function PlayGame() {
         }
         <ToastContainer />
       </section>
+      <div className={`${loading ? 'loader' : null}`}>
+        <RingLoader
+          color="#000000"
+          loading={loading}
+          size={150}
+          speedMultiplier={1}
+        />
+      </div>
     </>
   );
 }
