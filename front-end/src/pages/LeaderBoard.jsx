@@ -20,7 +20,12 @@ export default function LeaderBoard() {
   }, [percentage]);
 
   const scorePostReq = async () => {
+    const user = JSON.parse(localStorage.getItem('user'));
     const res = await axios.post(postScore, { 'score': percentage });
+    user.rank.current = res.data.rank;
+    if (user.rank.current > user.rank.best)
+      user.rank.best = user.rank.current;
+    localStorage.setItem('user', JSON.stringify(user));
     setRank(res.data.rank);
   };
 

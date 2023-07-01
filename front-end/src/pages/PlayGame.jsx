@@ -34,6 +34,9 @@ export default function PlayGame() {
       setPercentage((score / questions.length) * 100);
       const user = JSON.parse(localStorage.getItem('user'));
       user.prevAttempt = percentage;
+      if (user.personalBest < percentage) {
+        user.personalBest = percentage;
+      }
       localStorage.setItem('user', JSON.stringify(user));
       setTimeout(() => {
         navigate('/leaderboard', { state: { percentage } });

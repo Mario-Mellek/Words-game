@@ -10,7 +10,11 @@ export default function LandingPage() {
   const [user, setUser] = useState({
     userName: '',
     personalBest: 0,
-    prevAttempt: 0
+    prevAttempt: 0,
+    rank: {
+      current: 0,
+      best: 0
+    }
   });
 
   useEffect(() => {
