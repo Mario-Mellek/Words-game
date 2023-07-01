@@ -11,6 +11,8 @@ export default function PlayGame() {
   const [questions, setQuestions] = useState('');
   const [correctAnswer, setCorrectAnswer] = useState();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [percentage, setPercentage] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +21,9 @@ export default function PlayGame() {
     if (user && prevAttempt === 0) {
       getQuestionsReq();
     }
+    else if (user && prevAttempt !== 0) {
+      navigate('/leaderboard');
+    }
     else {
       navigate('/');
     }
@@ -26,11 +31,15 @@ export default function PlayGame() {
 
   useEffect(() => {
     if (currentQuestionIndex === 10) {
+      setPercentage((score / questions.length) * 100);
+      const user = JSON.parse(localStorage.getItem('user'));
+      user.prevAttempt = percentage;
+      localStorage.setItem('user', JSON.stringify(user));
       setTimeout(() => {
-        navigate('/leaderboard');
-      }, 3000);
+        navigate('/leaderboard', { state: { percentage } });
+      }, 5000);
     }
-  }, [currentQuestionIndex]);
+  }, [currentQuestionIndex, percentage]);
 
   const getQuestionsReq = async () => {
     try {
@@ -45,9 +54,11 @@ export default function PlayGame() {
     if (option === questions[currentQuestionIndex].pos) {
       setCurrentQuestionIndex((prev) => ++prev);
       setCorrectAnswer(true);
-    } else
+      setScore((prev) => ++prev);
+    } else {
       setCorrectAnswer(false);
-
+      setScore((prev) => --prev);
+    }
     setTimeout(() => {
       setCorrectAnswer(undefined);
     }, 500);
@@ -66,12 +77,12 @@ export default function PlayGame() {
           strokeColor="#000000"
           trailWidth={0.5}
         />
-        <span>{currentQuestionIndex} / 10</span>
+        <span>{currentQuestionIndex / 10 * 100}%</span>
         {currentQuestionIndex === 10 &&
           <div className='endGame-screen'>
             <br />
-            <span>Well Done!</span>
-            <span>You will be redirected to the leaderboard in few seconds</span>
+            <span>You scored {percentage}% {percentage >= 80 ? 'Well Done!🥳' : 'You can do better 🤷‍♂️'}  </span>
+            <span>Redirecting to the leaderboard in few seconds</span>
           </div>
         }
         {questions && questions[currentQuestionIndex] &&
