@@ -3,12 +3,12 @@ import { Circle } from 'rc-progress';
 import PropTypes from 'prop-types';
 
 
-const Score = ({ percentage, score }) => {
+const Score = ({ percentage }) => {
   return (
     <div>
       <Circle
         className='score-Circle'
-        percent={percentage || score}
+        percent={percentage}
         strokeWidth={3}
         strokeColor="#000000"
         trailWidth={2}
@@ -17,7 +17,6 @@ const Score = ({ percentage, score }) => {
   );
 };
 Score.propTypes = {
-  percentage: PropTypes.number.isRequired,
-  score: PropTypes.number
+  percentage: PropTypes.number,
 };
 export default Score;

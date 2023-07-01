@@ -14,8 +14,8 @@ export default function LeaderBoard() {
   const navigate = useNavigate();
   const { percentage } = location.state || {};
   const { width, height } = useWindowSize();
-  const [rank, setRank] = useState('');
-  const [bestRank, setBestRank] = useState('');
+  const [rank, setRank] = useState(0);
+  const [bestRank, setBestRank] = useState(0);
   const [score, setScore] = useState(0);
   const [isComplete] = useTimeout(5000);
 
@@ -40,7 +40,7 @@ export default function LeaderBoard() {
     else {
       navigate('/');
     }
-  }, []);
+  }, [percentage, rank, score]);
 
   const scorePostReq = async (score) => {
     try {
@@ -68,11 +68,12 @@ export default function LeaderBoard() {
           <div className='leaderboard'>
             <div>
               <p>You scored {percentage || score}%</p>
-              <Score percentage={percentage} score={score} />
+              <Score percentage={percentage || score} />
             </div>
             <div>
               <p>You are currently ranked among the top {rank}% of players.</p>
-              <Score percentage={rank} /></div>
+              <Score percentage={rank} />
+            </div>
             <div>
               <p>Your best rank is {bestRank}%</p>
               <Score percentage={bestRank} />

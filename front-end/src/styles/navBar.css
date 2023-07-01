@@ -24,10 +24,10 @@ nav li .active {
   font-size: large;
 }
 .logo span {
-  color: rgb(183, 224, 0);
+  color: rgb(170, 170, 170);
 }
 .home-btn {
-  color: rgb(16, 122, 87);
+  color: rgb(255, 0, 0);
   text-decoration: none;
 }
 .nav-list ul {
@@ -50,5 +50,5 @@ nav li .active {
 .nav-list a:active {
   text-decoration: none;
   border-radius: 0.5rem;
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px solid rgb(170, 170, 170);
 }

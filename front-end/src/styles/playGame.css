@@ -5,7 +5,6 @@
   width: 50%;
 }
 .word {
-  font-size: x-large;
   letter-spacing: 0.1em;
   text-transform: capitalize;
   padding: 1rem;
@@ -62,7 +61,7 @@
   0% {
   }
   50% {
-    background-color: red;
+    background-color: rgb(225, 0, 0);
   }
   100% {
   }
