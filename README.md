@@ -15,4 +15,4 @@ To start the back-end server, run `npm run back:end` from the main directory of 
 
 To start the front-end development server, run `npm run front:end` from the main directory of the project.
 
-For more information and usage instructions, please see the README files in the [`back-end`]() and [`front-end`]() directories.
+For more information and usage instructions, please see the README files in the [`back-end`](https://github.com/Mario-Mellek/Words-game/tree/main/back-end) and [`front-end`](https://github.com/Mario-Mellek/Words-game/tree/main/front-end) directories.
