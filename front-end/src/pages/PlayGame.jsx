@@ -17,12 +17,8 @@ export default function PlayGame() {
 
   useEffect(() => {
     const user = localStorage.getItem('user') || undefined;
-    const prevAttempt = user ? JSON.parse(user).prevAttempt : undefined;
-    if (user && prevAttempt === 0) {
+    if (user) {
       getQuestionsReq();
-    }
-    else if (user && prevAttempt !== 0) {
-      navigate('/leaderboard');
     }
     else {
       navigate('/');
@@ -40,7 +36,7 @@ export default function PlayGame() {
       localStorage.setItem('user', JSON.stringify(user));
       setTimeout(() => {
         navigate('/leaderboard', { state: { percentage } });
-      }, 5000);
+      }, 3000);
     }
   }, [currentQuestionIndex, percentage]);
 
@@ -85,11 +81,11 @@ export default function PlayGame() {
           <div className='endGame-screen'>
             <br />
             <span>You scored {percentage}% {percentage >= 80 ? 'Well Done!🥳' : 'You can do better 🤷‍♂️'}  </span>
-            <span>Redirecting to the leaderboard in few seconds</span>
+            <span>Redirecting to the leaderboard.</span>
           </div>
         }
         {questions && questions[currentQuestionIndex] &&
-          <div className={`words-card ${correctAnswer === undefined ? '' : (correctAnswer ? 'correct' : 'wrong')}`}>
+          <div className={`card ${correctAnswer === undefined ? '' : (correctAnswer ? 'correct' : 'wrong')}`}>
             <h3>What is the Position of speech of the word:</h3>
             <p key={questions[currentQuestionIndex].id} className='word swipe-in'>{questions[currentQuestionIndex].word}</p>
             <div className='options'>
