@@ -65,19 +65,20 @@ export default function LeaderBoard() {
       </header>
       <section className='main'>
         <div className='card'>
-          <div>
-            <p>You scored {percentage || score}%</p>
-            <Score percentage={percentage} score={score} />
+          <div className='leaderboard'>
+            <div>
+              <p>You scored {percentage || score}%</p>
+              <Score percentage={percentage} score={score} />
+            </div>
+            <div>
+              <p>You are currently ranked among the top {rank}% of players.</p>
+              <Score percentage={rank} /></div>
+            <div>
+              <p>Your best rank is {bestRank}%</p>
+              <Score percentage={bestRank} />
+            </div>
           </div>
-          <div>
-            <p>You are currently ranked among the top {rank}% of players.</p>
-            <Score percentage={rank} />
-          </div>
-          <div>
-            <p>Your best rank is {bestRank}%</p>
-            <Score percentage={bestRank} />
-          </div>
-          <button className='optn-btn' onClick={() => navigate('/playgame')}>Play again</button>
+          <button className='playagn-btn' onClick={() => navigate('/playgame')}>Play again</button>
         </div>
       </section>
       <Confetti

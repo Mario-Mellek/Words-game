@@ -9,9 +9,9 @@ const Score = ({ percentage, score }) => {
       <Circle
         className='score-Circle'
         percent={percentage || score}
-        strokeWidth={1}
+        strokeWidth={3}
         strokeColor="#000000"
-        trailWidth={0.5}
+        trailWidth={2}
       />
     </div>
   );
